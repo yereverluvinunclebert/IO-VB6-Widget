@@ -1,5 +1,5 @@
 # IO-Widget-VB6
-The Steampunk IO Desktop Widget, written in VB6 for Windows and ReactOS. Created for XP, Vista, Win7, 8, 10/11+, ReactOS as well as Linux or the Apple Mac's OS/X with Wine. This IO Desktop Widget is an attractive and steamy VB6 widget for your desktop. This VB6 widget provides a simple moveable marble globe complete with rings
+The Steampunk IO Desktop Widget, written in VB6 for Windows Vista, 7, 8 and 10/11+. There will also be a version for Reactos and XP, watch this space for the link. Also tested and running well on Linux and Mac os/X using Wine. This IO Desktop Widget is an attractive and steamy VB6 widget for your desktop. This VB6 widget provides a simple moveable marble globe complete with rings
 
 ![io](https://github.com/yereverluvinunclebert/IO-VB6-Widget/assets/2788342/7848df4f-ad16-465f-923d-72f792ac47bb)
 
@@ -133,7 +133,7 @@ If you are just a casual user of desktop programs then simply download the SETUP
  
 
  
- * Uses the latest version of the RC5 Cairo framework from Olaf Schmidt.
+o Uses the latest version of the RC5 Cairo framework from Olaf Schmidt.
  
  During development the RC5 components need to be registered. These scripts are 
  used to register. Run each by double-clicking on them.
@@ -145,21 +145,31 @@ If you are just a casual user of desktop programs then simply download the SETUP
  referenced using modRC5regfree.bas which is compiled into the binary.	
  
  
- Requires a IO folder in C:\Users\<user>\AppData\Roaming\ 
- eg: C:\Users\<user>\AppData\Roaming\IO
- Requires a settings.ini file to exist in C:\Users\<user>\AppData\Roaming\IO
+ o Requires a IO folder in C:\Users\<user>\AppData\Roaming\ 
+ eg: C:\Users\<user>\AppData\Roaming\IO-widget-VB6
+ Requires a settings.ini file to exist in C:\Users\<user>\AppData\Roaming\IO-widget-VB6
  The above will be created automatically by the compiled program when run for the 
  first time.
  
- Uses just one OCX control extracted from Krools mega pack (slider). This is part 
- of Krools replacement for the whole of Microsoft Windows Common Controls found 
- in mscomctl.ocx. The slider control OCX file is shipped with this package.
- 
- * CCRSlider.ocx
- 
- This OCX will reside in the program folder. The program reference to this OCX is 
- contained within the supplied resource file IO.RES. It is 
- compiled into the binary.
+ o Krool's replacement for the Microsoft Windows Common Controls found in
+mscomctl.ocx (slider) are replicated by the addition of one
+dedicated OCX file that are shipped with this package.
+
+During development only, this must be copied to C:\windows\syswow64 and should be registered.
+
+- CCRSlider.ocx
+
+Register this using regsvr32, ie. in a CMD window with administrator privileges.
+	
+	c:                          ! set device to boot drive with Windows
+	cd \windows\syswow64s	    ! change default folder to syswow64
+	regsvr32 CCRSlider.ocx	! register the ocx
+
+This will allow the custom controls to be accessible to the VB6 IDE
+at design time and the sliders will function as intended (if this ocx is
+not registered correctly then the relevant controls will be replaced by picture boxes).
+
+The above is only for development, for ordinary users, during runtime there is no need to do the above. The OCX will reside in the program folder. The program reference to this OCX is contained within the supplied resource file, IO-widget-VB6.RES. The reference to this file is already compiled into the binary. As long as the OCX is in the same folder as the binary the program will run without the need to register the OCX manually.
  
  * OLEGuids.tlb
  
